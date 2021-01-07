@@ -3300,6 +3300,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 17;
+				DEVELOPMENT_TEAM = ZJLRP55PKJ;
 				ENABLE_BITCODE = NO;
 				ENABLE_PREVIEWS = YES;
 				HEADER_SEARCH_PATHS = (
@@ -3311,7 +3312,7 @@
 					"$(PROJECT_DIR)/$(SYSROOT_DIR)/include/spice-1",
 				);
 				INFOPLIST_FILE = Platform/iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3321,7 +3322,7 @@
 					"$(PROJECT_DIR)/$(SYSROOT_DIR)/lib/gstreamer-1.0",
 				);
 				MARKETING_VERSION = 2.0.17;
-				PRODUCT_BUNDLE_IDENTIFIER = com.utmapp.UTM;
+				PRODUCT_BUNDLE_IDENTIFIER = com.utmapp2.UTM;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Platform/Swift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -3337,6 +3338,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 17;
+				DEVELOPMENT_TEAM = ZJLRP55PKJ;
 				ENABLE_BITCODE = NO;
 				ENABLE_PREVIEWS = YES;
 				HEADER_SEARCH_PATHS = (
@@ -3348,7 +3350,7 @@
 					"$(PROJECT_DIR)/$(SYSROOT_DIR)/include/spice-1",
 				);
 				INFOPLIST_FILE = Platform/iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3358,7 +3360,7 @@
 					"$(PROJECT_DIR)/$(SYSROOT_DIR)/lib/gstreamer-1.0",
 				);
 				MARKETING_VERSION = 2.0.17;
-				PRODUCT_BUNDLE_IDENTIFIER = com.utmapp.UTM;
+				PRODUCT_BUNDLE_IDENTIFIER = com.utmapp2.UTM;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Platform/Swift-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
