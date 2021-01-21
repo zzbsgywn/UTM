@@ -23,7 +23,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface VMDisplayViewController : UIViewController<UTMVirtualMachineDelegate> {
+@interface VMDisplayViewController : UIViewController<UTMVirtualMachineDelegate,UIDocumentPickerDelegate> {
     NSMutableArray<UIKeyCommand *> *_keyCommands;
 }
 
@@ -40,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *placeholderIndicator;
 @property (weak, nonatomic) IBOutlet UIButton *resumeBigButton;
 @property (strong, nonatomic) IBOutletCollection(VMKeyboardButton) NSArray *customKeyModifierButtons;
+@property (weak, nonatomic) IBOutlet UIButton *folderButton;//zzb
 
 @property (nonatomic, readonly) BOOL largeScreen;
 @property (nonatomic, readwrite) BOOL prefersStatusBarHidden;
@@ -58,6 +59,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)showKeyboardButton:(UIButton *)sender;
 - (IBAction)hideToolbarButton:(UIButton *)sender;
 - (IBAction)drivesPressed:(UIButton *)sender;
+- (IBAction)showCamera:(UIButton *)sender;
+
+
 
 @end
 

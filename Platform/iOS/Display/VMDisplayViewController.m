@@ -308,7 +308,25 @@
 - (IBAction)showKeyboardButton:(UIButton *)sender {
     self.keyboardVisible = !self.keyboardVisible;
 }
-
+//add by zzb
+- (IBAction)showFolder:(UIButton *)sender {
+    NSArray *documentTypes = @[@"public.text",
+                                   @"public.content",
+                                   @"public.source-code",
+                                   @"public.image",
+                                   @"public.audiovisual-content",
+                                   @"com.adobe.pdf",
+                                   @"com.apple.keynote.key",
+                                   @"com.microsoft.word.doc",
+                                   @"com.microsoft.excel.xls",
+                                   @"com.microsoft.powerpoint.ppt"];
+    UIDocumentPickerViewController *documentPickerViewController = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:documentTypes inMode:UIDocumentPickerModeOpen];
+    documentPickerViewController.delegate = self;
+    documentPickerViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentViewController:documentPickerViewController animated:YES completion:nil];
+    
+}
+//add end
 - (IBAction)drivesPressed:(UIButton *)sender {
     self.removableDrivesViewController.modalPresentationStyle = UIModalPresentationPageSheet;
     self.removableDrivesViewController.vm = self.vm;
@@ -332,6 +350,48 @@
         controller.nameReadOnly = YES;
 #endif
     }
+}
+#pragma mark - UIDocumentPickerDelegate
+- (void)showAlert:(NSString *)msg completion:(nullable void (^)(UIAlertAction *action))completion {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:msg preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okay = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK button") style:UIAlertActionStyleDefault handler:completion];
+    [alert addAction:okay];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:alert animated:YES completion:nil];
+    });
+}
+
+
+- (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentsAtURLs:(NSArray<NSURL *> *)urls {
+    // 获取授权
+    BOOL fileUrlAuthozied = [urls.firstObject startAccessingSecurityScopedResource];
+    if (fileUrlAuthozied) {
+            // 通过文件协调工具来得到新的文件地址，以此得到文件保护功能
+            NSFileCoordinator *fileCoordinator = [[NSFileCoordinator alloc] init];
+            NSError *error;
+            
+            [fileCoordinator coordinateReadingItemAtURL:urls.firstObject options:0 error:&error byAccessor:^(NSURL *newURL) {
+                // 读取文件
+                NSString *fileName = [newURL lastPathComponent];//文件名带后缀
+                NSError *error = nil;
+                NSData *fileData = [NSData dataWithContentsOfURL:newURL options:NSDataReadingMappedIfSafe error:&error];
+                if (error) {
+                    // 读取出错
+                } else {
+                    // 上传
+                    NSLog(@"[zzb] fileName : %@", fileName);
+                    NSString *aString = [[NSString alloc] initWithData:fileData encoding:NSUTF8StringEncoding];
+                    NSLog(@"[zzb] filedata : %@", aString);
+                    [self showAlert:aString completion:nil];
+                    // [self uploadingWithFileData:fileData fileName:fileName fileURL:newURL];
+                }
+                [self dismissViewControllerAnimated:YES completion:NULL];
+            }];
+            [urls.firstObject stopAccessingSecurityScopedResource];
+        } else {
+            // 授权失败
+           NSLog(@"[zzb] startAccessing error");
+        }
 }
 
 #pragma mark - Notification Handling
